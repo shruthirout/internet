@@ -19,7 +19,7 @@ const server = createServer( async (req, res) => {
       res.statusCode = 200;
       res.setHeader('Content-Type', 'text/plain');
       res.setHeader('Access-Control-Allow-Origin', "*");
-      res.end("Mithilesh");
+      res.end("Shruthi");
       // console.log(res)
     }
     if(req.method == 'OPTIONS') {
