@@ -20,6 +20,4 @@ const logIn = async () => {
         alert('Failed to login');
         return;
     }
-    let { surname } = await res.json();
-    welcome.textContent = surname;
 }

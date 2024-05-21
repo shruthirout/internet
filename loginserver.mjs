@@ -1,13 +1,5 @@
-import fs from 'node:fs/promises';
 import { createServer } from 'node:http';
 
-const writeToFile = async (data) => {
-    try {
-        await fs.writeFile('data.txt', data, {flag: 'a+'});
-    } catch (e) {
-        console.log(e)
-    }
-}
 const hostname = '127.0.0.1';
 const port = 3000;
 
@@ -20,14 +12,11 @@ const server = createServer( async (req, res) => {
       res.setHeader('Content-Type', 'text/plain');
       res.setHeader('Access-Control-Allow-Origin', "*");
       res.end("Shruthi");
-      // console.log(res)
     }
     if(req.method == 'OPTIONS') {
       res.statusCode = 200;
-      res.setHeader('Content-Type', 'appliction/json');
-      res.setHeader('Access-Control-Allow-Origin', 'http://127.0.0.1:5500');
-      res.setHeader('Access-Control-Allow-Methods', "POST, GET, OPTIONS");
-      res.setHeader('Access-Control-Allow-Headers', '*');
+      res.setHeader('Content-Type', 'application/json');
+      res.setHeader('Access-Control-Allow-Origin', 'http://127.0.0.1:5500');      res.setHeader('Access-Control-Allow-Headers', '*');
       res.end('OK');
     }
     if(req.method == 'POST') {
@@ -43,11 +32,8 @@ const server = createServer( async (req, res) => {
           console.log('Password...', password);
           await writeToFile(username);
           await writeToFile(password);
-          let surname = 'Kumar';
-          res.statusCode = 200;
           res.setHeader('Content-Type', 'text/plain');
           res.setHeader('Access-Control-Allow-Origin', "*");
-          res.end(JSON.stringify({surname}));
         } catch (e) {
           console.error('Error parsing JSON: ', e.message);
           res.writeHead(400, { 'Content-Type': 'text/plain'});
@@ -58,7 +44,6 @@ const server = createServer( async (req, res) => {
   }
   
 });
-
 server.listen(port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`);
 });
